@@ -6,9 +6,9 @@ import com.google.gson.annotations.SerializedName;
 public class ProductResponse{
 
 	@SerializedName("products")
-	private List<ProductsItem> products;
+	private List<Product> products;
 
-	public List<ProductsItem> getProducts(){
+	public List<Product> getProducts(){
 		return products;
 	}
 }

@@ -16,7 +16,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.example.amit.R;
 import com.example.amit.data.adapter.product.AddCartResponse;
@@ -24,7 +23,7 @@ import com.example.amit.data.adapter.product.ProductAdapter;
 import com.example.amit.data.adapter.product.ProductClickListner;
 import com.example.amit.data.api.ApiManager;
 import com.example.amit.data.model.product.ProductResponse;
-import com.example.amit.data.model.product.ProductsItem;
+import com.example.amit.data.model.product.Product;
 import com.example.amit.data.model.user.UserResponse;
 import com.example.amit.helper.TokenManager;
 
@@ -81,7 +80,7 @@ public class HomeFragment extends Fragment implements ProductClickListner {
          @Override
          public void onResponse(Call<ProductResponse> call, Response<ProductResponse> response) {
              if (response.isSuccessful()){
-                 adapter.setProductsItems(response.body().getProducts());
+                 adapter.setProducts(response.body().getProducts());
              }
          }
 
@@ -108,7 +107,7 @@ public class HomeFragment extends Fragment implements ProductClickListner {
     }
 
     @Override
-    public void showProductDetails(ProductsItem product) {
+    public void showProductDetails(Product product) {
         Bundle bundle=new Bundle();
         bundle.putSerializable("products",product);
         navController.navigate(R.id.action_menu_home_to_detailsFragment,bundle);
@@ -116,7 +115,7 @@ public class HomeFragment extends Fragment implements ProductClickListner {
     }
 
     @Override
-    public void addProductToCart(ProductsItem product) {
+    public void addProductToCart(Product product) {
 
         tokenManager= new TokenManager(getActivity());
        String token= tokenManager.getToken();
@@ -127,7 +126,7 @@ public class HomeFragment extends Fragment implements ProductClickListner {
           @Override
           public void onResponse(Call<AddCartResponse> call, Response<AddCartResponse> response) {
            if (response.isSuccessful()){
-               Toast.makeText(getContext(), "bye"+response.body().getMessage(), Toast.LENGTH_SHORT).show();
+
            }
 
           }

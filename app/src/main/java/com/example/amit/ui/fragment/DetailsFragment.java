@@ -3,7 +3,6 @@ package com.example.amit.ui.fragment;
 import android.content.Context;
 import android.os.Bundle;
 
-import androidx.annotation.LongDef;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -17,12 +16,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.example.amit.R;
 import com.example.amit.data.adapter.product.AddCartResponse;
 import com.example.amit.data.adapter.product.ProductClickListner;
 import com.example.amit.data.api.ApiManager;
-import com.example.amit.data.model.product.ProductsItem;
+import com.example.amit.data.model.product.Product;
 import com.example.amit.helper.TokenManager;
 import com.squareup.picasso.Picasso;
 
@@ -32,7 +30,7 @@ import retrofit2.Response;
 
 
 public class DetailsFragment extends Fragment implements ProductClickListner {
-    ProductsItem product;
+    Product product;
     Context context;
     TokenManager tokenManager;
     ProductClickListner clickListner;
@@ -48,7 +46,7 @@ public class DetailsFragment extends Fragment implements ProductClickListner {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments()!=null) {
-            product = (ProductsItem) getArguments().getSerializable("products");
+            product = (Product) getArguments().getSerializable("products");
             Log.d("fffffffff", "onCreate: "+product.getTitle());
         }
 
@@ -104,12 +102,12 @@ public class DetailsFragment extends Fragment implements ProductClickListner {
     }
 
     @Override
-    public void showProductDetails(ProductsItem product) {
+    public void showProductDetails(Product product) {
 
     }
 
     @Override
-    public void addProductToCart(ProductsItem product) {
+    public void addProductToCart(Product product) {
         tokenManager= new TokenManager(getActivity());
         String token= tokenManager.getToken();
         Log.d("dddddddddddddd", "addProductToCart: "+token);

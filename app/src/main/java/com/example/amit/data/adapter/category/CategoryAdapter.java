@@ -1,4 +1,4 @@
-package com.example.amit.data.adapter;
+package com.example.amit.data.adapter.category;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -24,7 +24,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.catego
     public CategoryAdapter(Context context) {
         this.context = context;
     }
-
     private List<CategoriesItem>categoriesItems=new ArrayList<>();
 
     public void setCategoriesItems(List<CategoriesItem> categoriesItems) {

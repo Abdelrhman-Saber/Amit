@@ -24,4 +24,7 @@ public class ApiManager {
     public static CategoryService categoryService(){
          return getOpject().create(CategoryService.class);
     }
+    public static CartService cartService(){
+         return getOpject().create(CartService.class);
+    }
 }

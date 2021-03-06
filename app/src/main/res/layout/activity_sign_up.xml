@@ -18,6 +18,11 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
     <LinearLayout
         android:id="@+id/sign_Up_Layout"
         android:layout_width="match_parent"
@@ -90,6 +95,7 @@
             android:textSize="@dimen/_13sdp"
             />
     </LinearLayout>
+        </LinearLayout>
     </ScrollView>
 
 

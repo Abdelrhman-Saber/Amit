@@ -14,7 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.amit.R;
-import com.example.amit.data.adapter.CategoryAdapter;
+import com.example.amit.data.adapter.category.CategoryAdapter;
 import com.example.amit.data.api.ApiManager;
 import com.example.amit.data.model.category.CategoryResponse;
 
@@ -32,9 +32,6 @@ public class CategoryFragment extends Fragment {
     public CategoryFragment() {
 
     }
-
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,23 +41,8 @@ public class CategoryFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initRecycler(view);
-        ApiManager.categoryService().getCategory().enqueue(new Callback<CategoryResponse>() {
-            @Override
-            public void onResponse(Call<CategoryResponse> call, Response<CategoryResponse> response) {
-                if(response.isSuccessful()){
-                    Log.d("dddddddddd", "onResponse: "+response.body().getCategories().get(0).getName());
-                    adapter.setCategoriesItems(response.body().getCategories());
+        initApiManager();
 
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call<CategoryResponse> call, Throwable t) {
-                Log.d("dddddddddd", "onFailure: "+t.getLocalizedMessage());
-
-            }
-        });
     }
 
     @Override
@@ -78,5 +60,25 @@ public class CategoryFragment extends Fragment {
         productRecycler.setAdapter(adapter);
         productRecycler.setLayoutManager(layoutManager);
 
+    }
+
+    private void initApiManager(){
+        ApiManager.categoryService().getCategory().enqueue(new Callback<CategoryResponse>() {
+            @Override
+            public void onResponse(Call<CategoryResponse> call, Response<CategoryResponse> response) {
+                if(response.isSuccessful()){
+                    Log.d("dddddddddd", "onResponse: "+response.body().getCategories().get(0).getName());
+                    adapter.setCategoriesItems(response.body().getCategories());
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<CategoryResponse> call, Throwable t) {
+                Log.d("dddddddddd", "onFailure: "+t.getLocalizedMessage());
+
+            }
+        });
     }
 }

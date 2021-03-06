@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -14,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.amit.R;
-import com.example.amit.data.model.product.ProductsItem;
+import com.example.amit.data.model.product.Product;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,11 +21,11 @@ import java.util.List;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.productHolder> {
 
-    private List<ProductsItem>productsItems=new ArrayList<>();
+    private List<Product> products =new ArrayList<>();
     private ProductClickListner clickListner;
 
-    public void setProductsItems(List<ProductsItem> productsItems) {
-        this.productsItems = productsItems;
+    public void setProducts(List<Product> products) {
+        this.products = products;
         notifyDataSetChanged();
     }
 
@@ -48,7 +47,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.productH
 
     @Override
     public void onBindViewHolder(@NonNull productHolder holder, int position) {
-       ProductsItem product =productsItems.get(position);
+       Product product = products.get(position);
        if (product != null){
            Glide.with(context).load(product.getAvatar()).into(holder.image);
            holder.title.setText(product.getTitle());
@@ -75,7 +74,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.productH
 
     @Override
     public int getItemCount() {
-        return productsItems.size();
+        return products.size();
     }
 
     static class productHolder extends RecyclerView.ViewHolder {
