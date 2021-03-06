@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -50,9 +51,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.productH
        ProductsItem product =productsItems.get(position);
        if (product != null){
            Glide.with(context).load(product.getAvatar()).into(holder.image);
-           holder.name.setText(product.getName());
-           holder.price.setText(String.valueOf(product.getPriceFinal())+"EGB");
-           holder.desc.setText(String.valueOf(product.getDescription()));
+           holder.title.setText(product.getTitle());
+           holder.price.setText(String.valueOf(product.getPriceFinal())+" "+"EGB");
+           holder.name.setText(String.valueOf(product.getName()));
        }
 
        holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -61,6 +62,13 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.productH
 
                clickListner.showProductDetails(product);
 
+           }
+       });
+
+       holder.add_Btn.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               clickListner.addProductToCart(product);
            }
        });
     }
@@ -72,14 +80,15 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.productH
 
     static class productHolder extends RecyclerView.ViewHolder {
         ImageView image;
-        TextView name,desc,price;
-        Button btn;
+        TextView title,name,price;
+        ImageButton add_Btn;
         public productHolder(@NonNull View itemView) {
             super(itemView);
             image=itemView.findViewById(R.id.product_imageView);
-            name=itemView.findViewById(R.id.product_name);
-            desc=itemView.findViewById(R.id.product_description);
+            title=itemView.findViewById(R.id.product_name);
+            name=itemView.findViewById(R.id.product_description);
             price=itemView.findViewById(R.id.product_price);
+            add_Btn=itemView.findViewById(R.id.product_imageButton);
         }
     }
 }

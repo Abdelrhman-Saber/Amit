@@ -1,5 +1,6 @@
 package com.example.amit.ui.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,11 +19,14 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.amit.R;
+import com.example.amit.data.adapter.product.AddCartResponse;
 import com.example.amit.data.adapter.product.ProductAdapter;
 import com.example.amit.data.adapter.product.ProductClickListner;
 import com.example.amit.data.api.ApiManager;
 import com.example.amit.data.model.product.ProductResponse;
 import com.example.amit.data.model.product.ProductsItem;
+import com.example.amit.data.model.user.UserResponse;
+import com.example.amit.helper.TokenManager;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -36,6 +40,9 @@ public class HomeFragment extends Fragment implements ProductClickListner {
     RecyclerView productRecycler;
     NavController navController;
     LinearLayout layout;
+    TokenManager tokenManager;
+    UserResponse userResponse;
+    Context context;
 
 
 
@@ -74,7 +81,6 @@ public class HomeFragment extends Fragment implements ProductClickListner {
          @Override
          public void onResponse(Call<ProductResponse> call, Response<ProductResponse> response) {
              if (response.isSuccessful()){
-
                  adapter.setProductsItems(response.body().getProducts());
              }
          }
@@ -104,13 +110,33 @@ public class HomeFragment extends Fragment implements ProductClickListner {
     @Override
     public void showProductDetails(ProductsItem product) {
         Bundle bundle=new Bundle();
-        bundle.putSerializable("product",product);
-        navController.navigate(R.id.action_menu_home_to_detailsFragment);
+        bundle.putSerializable("products",product);
+        navController.navigate(R.id.action_menu_home_to_detailsFragment,bundle);
 
     }
 
     @Override
     public void addProductToCart(ProductsItem product) {
+
+        tokenManager= new TokenManager(getActivity());
+       String token= tokenManager.getToken();
+        Log.d("dddddddddddddd", "addProductToCart: "+token);
+
+      ApiManager.productService().addProductToCart(product.getId(),
+              "Bearer " +token,1).enqueue(new Callback<AddCartResponse>() {
+          @Override
+          public void onResponse(Call<AddCartResponse> call, Response<AddCartResponse> response) {
+           if (response.isSuccessful()){
+               Toast.makeText(getContext(), "bye"+response.body().getMessage(), Toast.LENGTH_SHORT).show();
+           }
+
+          }
+
+          @Override
+          public void onFailure(Call<AddCartResponse> call, Throwable t) {
+              Log.d("ddddddddd", "onFailure: "+t.getLocalizedMessage());
+          }
+      });
 
     }
 }

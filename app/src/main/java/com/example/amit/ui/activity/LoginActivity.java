@@ -3,6 +3,7 @@ package com.example.amit.ui.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 import com.example.amit.R;
 import com.example.amit.data.api.ApiManager;
 import com.example.amit.data.model.user.UserResponse;
+import com.example.amit.helper.TokenManager;
 import com.example.amit.ui.fragment.HomeFragment;
 
 import java.util.HashMap;
@@ -31,11 +33,14 @@ public class LoginActivity extends AppCompatActivity {
     LinearLayout layout;
     ProgressBar progressBar;
     TextView login_create_new_acc,skip;
+    TokenManager tokenManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         initView();
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,11 +75,15 @@ public class LoginActivity extends AppCompatActivity {
         progressBar=findViewById(R.id.prog_bar);
         login_create_new_acc=findViewById(R.id.login_create_new_acc);
         skip=findViewById(R.id.login_skip);
+
+        tokenManager=new TokenManager(this);
     }
     private void login(){
 
         String email=email_editText.getText().toString().trim();
         String password=password_editText.getText().toString().trim();
+
+
 
 
         if (email.isEmpty()||password.isEmpty()){
@@ -93,10 +102,16 @@ public class LoginActivity extends AppCompatActivity {
                 public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                     progressBar.setVisibility(View.GONE);
                     layout.setVisibility(View.VISIBLE);
-                    if (response.isSuccessful())
-                        Log.d("fffffffffffff", "onResponse: "+response.body().getToken());
-
-                    else Log.d("dddddddddddd", "onResponse: "+response.code());
+                    if (response.isSuccessful()) {
+                        tokenManager.saveToken(response.body().getToken());
+                        Intent intent=new Intent(LoginActivity.this,MainActivity.class);
+                        Log.d("fffffffffffff", "onResponse: " + response.body().getToken());
+                        startActivity(intent);
+                    }
+                    else {
+                        Log.d("dddddddddddd", "onResponse: " + response.code());
+                        Toast.makeText(LoginActivity.this, "Check Your Data", Toast.LENGTH_SHORT).show();
+                    }
 
                 }
 
@@ -105,6 +120,7 @@ public class LoginActivity extends AppCompatActivity {
                     progressBar.setVisibility(View.GONE);
                     layout.setVisibility(View.VISIBLE);
                     Log.d("dddddddddddd", "onFailure: "+t.getLocalizedMessage());
+                    Toast.makeText(LoginActivity.this, "error", Toast.LENGTH_SHORT).show();
 
                 }
             });

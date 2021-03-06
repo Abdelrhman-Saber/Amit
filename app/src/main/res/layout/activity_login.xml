@@ -12,6 +12,7 @@
         android:visibility="gone"
         android:layout_gravity="center"
         />
+
     <LinearLayout
         android:id="@+id/login_layout"
         android:layout_width="match_parent"
@@ -82,5 +83,7 @@
             android:textColor="@color/black"/>
 
     </LinearLayout>
+
+
 
 </FrameLayout>

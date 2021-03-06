@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.example.amit.R;
 import com.example.amit.data.api.ApiManager;
 import com.example.amit.data.model.user.UserResponse;
+import com.example.amit.helper.TokenManager;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -30,6 +31,7 @@ public class SignUpActivity extends AppCompatActivity {
     LinearLayout layout;
     ProgressBar progressBar;
     TextView signUp_have_already_acc;
+    TokenManager tokenManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,7 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 signUp();
+
             }
         });
         signUp_have_already_acc.setOnClickListener(new View.OnClickListener() {
@@ -59,6 +62,7 @@ public class SignUpActivity extends AppCompatActivity {
         layout=findViewById(R.id.sign_Up_Layout);
         progressBar=findViewById(R.id.prog_bar);
         signUp_have_already_acc=findViewById(R.id.signUp_have_already_acc);
+        tokenManager=new TokenManager(this);
 
     }
     private void signUp(){
@@ -84,10 +88,15 @@ public class SignUpActivity extends AppCompatActivity {
                     progressBar.setVisibility(View.GONE);
                     layout.setVisibility(View.VISIBLE);
                     if (response.isSuccessful()){
+                        tokenManager.saveToken(response.body().getToken());
+                        String s =tokenManager.getToken();
+                        Log.d("dddddddddddddddddd", "onResponse: "+s);
                         Log.d("ddddddddddddddd", "onResponse: "+response.body().getToken());
-                        Toast.makeText(SignUpActivity.this, "Bravo!!!", Toast.LENGTH_LONG).show();
+                        Intent intent=new Intent(SignUpActivity.this,MainActivity.class);
+                        startActivity(intent);
+
                     }
-                    else Log.d("dddddddddddd", "onResponse: "+response.code());
+                    else Log.d("dddddddddddd", "onResponse: "+response.message());
 
 
                 }
@@ -97,6 +106,7 @@ public class SignUpActivity extends AppCompatActivity {
                     progressBar.setVisibility(View.GONE);
                     layout.setVisibility(View.VISIBLE);
                     Log.d("ddddddddddddddd", "onFailure: "+t.getLocalizedMessage());
+                    Toast.makeText(SignUpActivity.this, "Check your data", Toast.LENGTH_SHORT).show();
                 }
             });
         }
