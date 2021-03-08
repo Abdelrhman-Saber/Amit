@@ -13,6 +13,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.example.amit.R;
 import com.example.amit.data.adapter.cart.CartAdapter;
@@ -20,6 +22,7 @@ import com.example.amit.data.adapter.category.CategoryAdapter;
 import com.example.amit.data.api.ApiManager;
 import com.example.amit.data.model.cart.CartResponse;
 import com.example.amit.data.model.product.Product;
+import com.example.amit.helper.TokenManager;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,6 +34,9 @@ public class CartFragment extends Fragment {
     CartAdapter adapter;
     RecyclerView.LayoutManager layoutManager;
     RecyclerView cartRecycler;
+    TextView amount;
+    ImageButton addBtn,removeBtn;
+    TokenManager tokenManager;
 
     public CartFragment() {
         // Required empty public constructor
@@ -38,6 +44,7 @@ public class CartFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -63,12 +70,16 @@ public class CartFragment extends Fragment {
         cartRecycler.setLayoutManager(layoutManager);
     }
     private void initApiManager(){
-        ApiManager.cartService().getCarts().enqueue(new Callback<CartResponse>() {
+        tokenManager= new TokenManager(getActivity());
+        String token= tokenManager.getToken();
+        Log.d("dddddddddddddddd", "initApiManager: "+token);
+        ApiManager.cartService().getCarts("Bearer "+token).enqueue(new Callback<CartResponse>() {
             @Override
             public void onResponse(Call<CartResponse> call, Response<CartResponse> response) {
                 if (response.isSuccessful()){
+
                     Log.d("ddddddddddddddddd", "onResponse: "+response
-                            .body().getProducts().get(2).getProduct().getName());
+                            .message());
                     adapter.setProducts(response.body().getProducts());
                 }
                 else Log.d("dddddddddddddddd", "onResponse: "+response.message());

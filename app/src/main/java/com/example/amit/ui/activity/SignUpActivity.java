@@ -79,6 +79,9 @@ public class SignUpActivity extends AppCompatActivity {
             user.put("email",email);
             user.put("password",password);
 
+            Bundle bundle=new Bundle();
+            bundle.putString("name",name);
+
             progressBar.setVisibility(View.VISIBLE);
             layout.setVisibility(View.GONE);
 
