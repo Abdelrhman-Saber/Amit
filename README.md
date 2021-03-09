@@ -14,12 +14,6 @@ Amit application is a basic program of commerce to show products and select what
 * Navigation Component
 * Glide for showing picters
 
-## Pictures of the App
-* Login Screen
 
-* Home Screen
-* Category Screen
-* Cart Screen
-* Details Screen
 
 
