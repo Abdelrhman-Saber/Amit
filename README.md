@@ -8,11 +8,11 @@ Amit application is a basic program of commerce to show products and select what
 * Recycler View to show and organize screens 
 * Singleton to increase performance
 * Json library to convert from and to json format
-* Sdp Library
+* Sdp Library to manage the size of pictures and texts 
 * Pogo Class plugin
 * Jetpack Android
 * Navigation Component
-* Glide for showing pictures
+* Picaso for showing pictures
 
 
 
