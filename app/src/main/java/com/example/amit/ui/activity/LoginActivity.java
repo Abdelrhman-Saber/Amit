@@ -49,18 +49,13 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
-        skip.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent= new Intent(LoginActivity.this,MainActivity.class);
-                startActivity(intent);
-            }
-        });
+
         login_create_new_acc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent= new Intent(LoginActivity.this, SignUpActivity.class);
                 startActivity(intent);
+
             }
         });
     }
@@ -75,7 +70,7 @@ public class LoginActivity extends AppCompatActivity {
         layout=findViewById(R.id.login_layout);
         progressBar=findViewById(R.id.prog_bar);
         login_create_new_acc=findViewById(R.id.login_create_new_acc);
-        skip=findViewById(R.id.login_skip);
+
 
         tokenManager=new TokenManager(this);
     }
@@ -106,12 +101,16 @@ public class LoginActivity extends AppCompatActivity {
                     if (response.isSuccessful()) {
                         tokenManager.saveToken(response.body().getToken());
                         Intent intent=new Intent(LoginActivity.this,MainActivity.class);
-                        Log.d("fffffffffffff", "onResponse: " + response.body().getToken());
+                        Log.d("dddddddddddddd", "onResponse: " + response.body().getToken());
                         startActivity(intent);
+                        finish();
                     }
                     else {
                         Log.d("dddddddddddd", "onResponse: " + response.code());
-                        Toast.makeText(LoginActivity.this, "Check Your Data", Toast.LENGTH_SHORT).show();
+                        if (response.code()==401){
+                            Toast.makeText(LoginActivity.this, "Wrong Data", Toast.LENGTH_LONG)
+                                    .show();
+                        }
                     }
 
                 }
@@ -121,7 +120,7 @@ public class LoginActivity extends AppCompatActivity {
                     progressBar.setVisibility(View.GONE);
                     layout.setVisibility(View.VISIBLE);
                     Log.d("dddddddddddd", "onFailure: "+t.getLocalizedMessage());
-                    Toast.makeText(LoginActivity.this, "error", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "error", Toast.LENGTH_LONG).show();
 
                 }
             });

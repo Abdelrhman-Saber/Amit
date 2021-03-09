@@ -29,14 +29,15 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class CartFragment extends Fragment {
+public class CartFragment extends Fragment  {
 
     CartAdapter adapter;
     RecyclerView.LayoutManager layoutManager;
     RecyclerView cartRecycler;
-    TextView amount;
+    TextView price;
     ImageButton addBtn,removeBtn;
     TokenManager tokenManager;
+
 
     public CartFragment() {
         // Required empty public constructor
@@ -44,6 +45,7 @@ public class CartFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
     }
     @Override
@@ -58,6 +60,7 @@ public class CartFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         initRecycler(view);
         initApiManager();
+   
 
     }
 
@@ -69,6 +72,8 @@ public class CartFragment extends Fragment {
         cartRecycler.setAdapter(adapter);
         cartRecycler.setLayoutManager(layoutManager);
     }
+
+
     private void initApiManager(){
         tokenManager= new TokenManager(getActivity());
         String token= tokenManager.getToken();
@@ -91,4 +96,5 @@ public class CartFragment extends Fragment {
             }
         });
     }
+
 }

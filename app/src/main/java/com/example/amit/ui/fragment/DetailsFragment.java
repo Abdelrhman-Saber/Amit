@@ -47,7 +47,7 @@ public class DetailsFragment extends Fragment implements ProductClickListner {
         super.onCreate(savedInstanceState);
         if (getArguments()!=null) {
             product = (Product) getArguments().getSerializable("products");
-            Log.d("fffffffff", "onCreate: "+product.getTitle());
+            Log.d("dddddddddd", "onCreate: "+product.getTitle());
         }
 
     }
@@ -117,7 +117,7 @@ public class DetailsFragment extends Fragment implements ProductClickListner {
             @Override
             public void onResponse(Call<AddCartResponse> call, Response<AddCartResponse> response) {
                 if (response.isSuccessful()){
-                    Toast.makeText(getContext(), ""+response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Added Successfully", Toast.LENGTH_SHORT).show();
                 }
             }
 

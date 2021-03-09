@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.example.amit.R;
 import com.example.amit.data.adapter.product.AddCartResponse;
@@ -126,8 +127,11 @@ public class HomeFragment extends Fragment implements ProductClickListner {
           @Override
           public void onResponse(Call<AddCartResponse> call, Response<AddCartResponse> response) {
            if (response.isSuccessful()){
+               Log.d("dddddddddddddddddd", "onResponse: "+response.body());
 
+               Toast.makeText(getContext(), ""+response.body().getMessage(), Toast.LENGTH_LONG).show();
            }
+           else Log.d("dddddddddddddddddddd", "onResponse: "+response.code());
 
           }
 

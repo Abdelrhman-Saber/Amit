@@ -12,15 +12,6 @@
         android:background="@color/white"
         android:gravity="center">
 
-        <TextView
-            android:id="@+id/user_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/_30sdp"
-            android:text="name"
-            android:textColor="@color/black"
-            android:gravity="center"
-            android:layout_marginBottom="@dimen/_100sdp"/>
 
         <Button
             android:id="@+id/user_btn"

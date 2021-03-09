@@ -9,10 +9,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
+
+
+
+
+
     <LinearLayout
         android:id="@+id/layout"
         android:layout_width="match_parent"
@@ -86,7 +87,7 @@
             android:textSize="@dimen/_14sdp"/>
 
     </LinearLayout>
-    </ScrollView>
+
     <Button
         android:id="@+id/details_button"
         android:layout_width="match_parent"
@@ -99,6 +100,7 @@
         android:background="#D4082B"
         android:layout_marginTop="@dimen/_5sdp"
         />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </FrameLayout>

@@ -97,10 +97,16 @@ public class SignUpActivity extends AppCompatActivity {
                         Log.d("ddddddddddddddd", "onResponse: "+response.body().getToken());
                         Intent intent=new Intent(SignUpActivity.this,MainActivity.class);
                         startActivity(intent);
+                        finish();
 
                     }
-                    else Log.d("dddddddddddd", "onResponse: "+response.message());
+                    else {
 
+                        Log.d("dddddddddddd", "onResponse: " + response.code());
+                         if (response.code()==422){
+                             Toast.makeText(SignUpActivity.this, "Check Your Data", Toast.LENGTH_LONG).show();
+                         }
+                    }
 
                 }
 
@@ -109,7 +115,7 @@ public class SignUpActivity extends AppCompatActivity {
                     progressBar.setVisibility(View.GONE);
                     layout.setVisibility(View.VISIBLE);
                     Log.d("ddddddddddddddd", "onFailure: "+t.getLocalizedMessage());
-                    Toast.makeText(SignUpActivity.this, "Check your data", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignUpActivity.this, "Check your data", Toast.LENGTH_LONG).show();
                 }
             });
         }

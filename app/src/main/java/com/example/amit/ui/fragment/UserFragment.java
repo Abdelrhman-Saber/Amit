@@ -54,14 +54,15 @@ public class UserFragment extends Fragment {
 
 
     private void initView(View v){
-        name=v.findViewById(R.id.user_name);
+
         btn=v.findViewById(R.id.user_btn);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent =new Intent(getActivity(),
-                        SignUpActivity.class);
+                        LoginActivity.class);
                 startActivity(intent);
+                getActivity().finishAffinity();
 
 
             }

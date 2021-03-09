@@ -7,68 +7,57 @@
     android:layout_margin="@dimen/_3sdp">
     <ImageView
         android:id="@+id/cart_image"
+        android:layout_margin="@dimen/_5sdp"
         android:layout_width="@dimen/_100sdp"
         android:layout_height="@dimen/_100sdp"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginLeft="@dimen/_2sdp">
         <TextView
             android:id="@+id/cart_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/_10sdp"
+            android:textSize="@dimen/_15sdp"
             android:textColor="@color/black"
+            android:layout_marginLeft="@dimen/_5sdp"
             android:layout_marginBottom="@dimen/_10sdp"
             />
         <TextView
             android:id="@+id/cart_name"
             android:layout_width="match_parent"
-            android:textSize="@dimen/_7sdp"
+            android:textSize="@dimen/_12sdp"
+            android:layout_marginBottom="@dimen/_3sdp"
             android:textColor="#3B3B3B"
+            android:layout_marginLeft="@dimen/_5sdp"
             android:layout_height="wrap_content"
             />
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_5sdp">
         <TextView
             android:id="@+id/cart_price"
             android:layout_width="@dimen/_50sdp"
-            android:textSize="@dimen/_10sdp"
+            android:textSize="@dimen/_18sdp"
             android:textColor="#D4082B"
             android:layout_marginLeft="@dimen/_5sdp"
-            android:layout_gravity="left"
             android:layout_height="@dimen/_20sdp"
-            android:text="mmmmmmmmm"
-            />
-            <ImageButton
-                android:id="@+id/care_add_btn"
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="@dimen/_20sdp"
-                android:src="@drawable/ic_add"
-                android:layout_marginLeft="@dimen/_30sdp"
-                android:background="#E60330"/>
+            android:text="EGB"
+            android:textAlignment="textEnd"
 
-            <TextView
-                android:id="@+id/cart_amount"
-                android:layout_width="@dimen/_40sdp"
-                android:textSize="@dimen/_10sdp"
-                android:textColor="#D4082B"
-                android:layout_gravity="center"
-                android:layout_marginHorizontal="@dimen/_2sdp"
-                android:layout_height="@dimen/_20sdp"
-                android:text="mmmmmmmmm"
-                />
-            <ImageButton
-                android:id="@+id/cart_remove_btn"
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="@dimen/_20sdp"
-                android:src="@drawable/ic_minus"
-                android:background="#E60330"/>
+            />
+
+
+
+
 
         </LinearLayout>
+
     </LinearLayout>
+
 
 
 </LinearLayout>

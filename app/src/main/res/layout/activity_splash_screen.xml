@@ -11,8 +11,21 @@
 
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="@dimen/_120sdp"
-        android:layout_height="@dimen/_120sdp"/>
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="@dimen/_120sdp"
+        android:background="@drawable/amit2"
+        android:layout_marginBottom="@dimen/_100sdp"
+         />
+
+    <ProgressBar
+        android:id="@+id/prog_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:layout_gravity="center"
+        android:indeterminateTint="#E60330"
+
+        />
 
 
 
