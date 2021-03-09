@@ -12,7 +12,7 @@ Amit application is a basic program of commerce to show products and select what
 * Pogo Class plugin
 * Jetpack Android
 * Navigation Component
-* Glide for showing picters
+* Glide for showing pictures
 
 
 
