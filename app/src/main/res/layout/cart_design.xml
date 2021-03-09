@@ -45,10 +45,34 @@
             android:textColor="#D4082B"
             android:layout_marginLeft="@dimen/_5sdp"
             android:layout_height="@dimen/_20sdp"
-            android:text="EGB"
-            android:textAlignment="textEnd"
 
             />
+
+            <ImageButton
+                android:layout_marginLeft="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:background="#D4082B"
+                android:src="@drawable/ic_add"
+                />
+
+            <TextView
+
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:textSize="@dimen/_18sdp"
+                android:textColor="#D4082B"
+                android:gravity="center"/>
+
+            <ImageButton
+                android:layout_marginTop="@dimen/_3sdp"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:background="#D4082B"
+                android:src="@drawable/ic_minus"
+                />
 
 
 
